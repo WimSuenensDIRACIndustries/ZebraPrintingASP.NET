@@ -15,7 +15,7 @@ namespace ZebraPrintingAPI.Controllers
     {
         // POST api/values
         [HttpPost]
-        public SuccessResponse PutByQuery([FromQuery]string IP, [FromBody]PrintContent content)
+        public SuccessResponse PostByQuery([FromQuery]string IP, [FromBody]PrintContent content)
         {
             string zplString = content.ZPL;
 
@@ -33,12 +33,12 @@ namespace ZebraPrintingAPI.Controllers
 
                 if (reply.Status != IPStatus.Success)
                 {
-                    SuccessResponse ping = new SuccessResponse
+                    SuccessResponse response = new SuccessResponse
                     {
                         success = false,
                         message = reply.Status.ToString()
                     };
-                    return ping;
+                    return response;
 
                 }
                 else
